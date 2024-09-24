@@ -1,17 +1,12 @@
 ﻿namespace Lab1 {
     public class GP : IEnumerable<double> {
-        private double b0;
         private double b;
         private double q;
+        private double cur;
 
         public double start {
-            get {return b0;}
-            set {b0 = value; b = b0;}
-        }
-
-        public double curr {
             get {return b;}
-            set {b = value;}
+            set {b = value; cur = b;}
         }
 
         public double ratio {
@@ -21,8 +16,11 @@
 
         public GP(double b, double q) {
             start = b;
+            if (q != 0)
             ratio = q;
         }
+
+        public override string ToString() { return $"{{ b = {start}, q = {ratio} }}"; }
 
         public double this[int index] {
             get {
@@ -31,19 +29,20 @@
             }
         }
 
-        public double Sum(int to) {
-            if (to < 0) { return 0; }
+        public double Sum(int n) {
+            if (n < 0) { return 0; }
+            if (ratio == 1) return start*n;
 
-            if (ratio < 1.01) 
-                return start * (1 - Math.Pow(ratio, to)) / (1 - ratio);
+            if (Math.Abs(ratio - 1) < 10e-12) 
+                return start * (1 - Math.Pow(ratio, n)) / (1 - ratio);
             else 
-                return start * (Math.Pow(ratio, to) - 1) / (ratio - 1);
+                return start * (Math.Pow(ratio, n) - 1) / (ratio - 1);
         }
 
         public IEnumerator<double> GetEnumerator() {
             while (true) {
-                double next = curr;
-                curr *= ratio;
+                double next = cur;
+                cur *= ratio;
                 yield return next;
             }
         }
