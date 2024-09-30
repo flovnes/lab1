@@ -1,8 +1,8 @@
 namespace Lab1 {
     public class Cube : Square {
-        public Cube(double a) { side = a; }
-        public Cube() : this(1) {}
-        public Cube(Cube that) : this(that.side) {}
+        public Cube(double a) : base(a) {}
+        public Cube() : base(1) {}
+        public Cube(Cube that) : base(that.side) {}
 
         public override string ToString() { return $"cube {{ side: {side} }}"; }
         public new double Area() { return 6 *side*side; }
