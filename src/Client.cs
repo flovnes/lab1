@@ -3,10 +3,11 @@ namespace Lab1 {
         static void Main() {
             ClientGP();
             ClientSquare();
+            ClientCube();
         }
 
         static void ClientGP() {
-            System.Console.WriteLine("-- 1 --");
+            Console.WriteLine(" -- 1 --");
 
             GP gp1 = new GP(2, 3);
             Console.WriteLine($"GP_1 {gp1}");
@@ -22,13 +23,11 @@ namespace Lab1 {
             Console.WriteLine($"\nGP_2 {gp2}");
 
             Console.WriteLine("6 terms (enum):");
-
-            foreach (double term in gp2.Take(6))
-                { Console.Write($"{term} "); }
+            Console.WriteLine(string.Join(" ", gp2.Take(6)));
 
             gp2.start = 5;
             gp2.ratio = 0.5;
-            Console.WriteLine($"\n\nGP_2* {gp2}");
+            Console.WriteLine($"\nGP_2* {gp2}");
 
             Console.WriteLine("5 terms:");
             for (int i = 0; i < 5; i++) {
@@ -55,11 +54,15 @@ namespace Lab1 {
             Console.WriteLine($"Square2 side = {sqr2.side}");
             Console.WriteLine($"Square1 > Square2  | {sqr1 > sqr2}");
             Console.WriteLine($"Square1 <= Square2 | {sqr1 <= sqr2}");
+        }
+
+        static void ClientCube() {
+            Console.WriteLine("\n\n -- 3 --");
 
             Cube cube1 = new ();
             Cube cube2 = new (4);
 
-            Console.WriteLine($"\n\nCube1 = {cube1}");
+            Console.WriteLine($"Cube1 = {cube1}");
             Console.WriteLine($"Cube2 = {cube2}");
 
             cube1 *= 3; 
@@ -67,7 +70,6 @@ namespace Lab1 {
 
             Cube cube3 = cube1 + cube2;
             Console.WriteLine($"\nCube1 + Cube2 = Cube3\nCube3 = {cube3}");
-
 
             Console.WriteLine($"\nCube1 side = {cube1.side}");
             Console.WriteLine($"Cube2 side = {cube2.side}");

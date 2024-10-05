@@ -5,18 +5,20 @@
         private double cur;
 
         public double start {
-            get {return b;}
-            set {b = value; cur = b;}
+            get { return b; }
+            set { b = value; cur = b; }
         }
 
         public double ratio {
-            get {return q;}
-            set {if (value != 0) q = value;}
+            get { return q; }
+            set {
+                if (value == 0) throw new ArgumentException("ratio cant be 0");
+                q = value;
+            }
         }
 
         public GP(double b, double q) {
             start = b;
-            if (q != 0)
             ratio = q;
         }
 
@@ -31,12 +33,9 @@
 
         public double Sum(int n) {
             if (n < 0) { return 0; }
-            if (ratio == 1) return start*n;
-
-            if (Math.Abs(ratio - 1) < 10e-12) 
-                return start * (1 - Math.Pow(ratio, n)) / (1 - ratio);
-            else 
-                return start * (Math.Pow(ratio, n) - 1) / (ratio - 1);
+            if (Math.Abs(ratio - 1) < 1e-12) 
+                return start * n;
+            return start * (Math.Pow(ratio, n) - 1) / (ratio - 1);
         }
 
         public IEnumerator<double> GetEnumerator() {

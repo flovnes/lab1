@@ -12,10 +12,14 @@ namespace Lab1 {
         public double Area() { return side*side; }
         public double Perimeter() { return side*4; }
         public int CompareTo(Square that) { return side.CompareTo(that.side); }
-        public static bool operator >  (Square some, Square other) { return some.CompareTo(other) > 0; }
-        public static bool operator <  (Square some, Square other) { return some.CompareTo(other) < 0; }
-        public static bool operator >= (Square some, Square other) { return some.CompareTo(other) >= 0; }
-        public static bool operator <= (Square some, Square other) { return some.CompareTo(other) <= 0; }
+        public override bool Equals(object some) => some is Square square && side == square.side;
+        public override int GetHashCode() => side.GetHashCode();
+        public static bool operator >  (Square some, Square other) => some.CompareTo(other) > 0; 
+        public static bool operator <  (Square some, Square other) => some.CompareTo(other) < 0; 
+        public static bool operator >= (Square some, Square other) => some.CompareTo(other) >= 0; 
+        public static bool operator <= (Square some, Square other) => some.CompareTo(other) <= 0;
+        public static bool operator == (Square some, Square other) => some.Equals(other);
+        public static bool operator != (Square some, Square other) => !(some == other);
 
         public static Square operator +(Square a, Square b) => new(a.side + b.side);
         public static Square operator -(Square a, Square b) => new (a.side-b.side<0 ?0 :a.side-b.side);

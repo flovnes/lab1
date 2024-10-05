@@ -60,5 +60,29 @@ namespace gp_tests
 			
 			Assert.Equal(1 + 1/4, gp.Sum(100));
 		}
+
+        [Fact]
+		public static void Square_Constructor_ReturnSquare_1() 
+		{
+			Square sqr = new();
+			
+			Assert.Equal(1, sqr.Area());
+		}
+
+        [Fact]
+		public static void Square_Constructor_ReturnSquare_2() 
+		{
+			Square sqr = new(new Square() + new Square(2)*3);
+			
+			Assert.Equal(49, sqr.Area());
+		}
+
+        [Fact]
+        public static void Cube_Constructor_ReturnCube_Integer()
+        {
+            Cube cube = new(3);
+
+            Assert.Equal(27, cube.Volume());
+        }
 	}
 }
