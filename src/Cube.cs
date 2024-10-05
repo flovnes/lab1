@@ -9,7 +9,7 @@ namespace Lab1 {
         public new double Perimeter() { return 12 *side; }
         public double Volume() { return side*side*side; }
 
-        public override bool Equals(object obj) => obj is Cube cube && side == cube.side;
+        public override bool Equals(object some) => some is Cube cube && side == cube.side;
         public override int GetHashCode() => base.GetHashCode();
         public int CompareTo(Cube other) => base.CompareTo(other);
 
