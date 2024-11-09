@@ -36,7 +36,7 @@ namespace Lab1 {
         }
 
         static void ClientSquare() {
-            System.Console.WriteLine("\n\n -- 2 --");
+            Console.WriteLine("\n\n -- 2 --");
 
             Square sqr1 = new (3);
             Square sqr2 = new (5);

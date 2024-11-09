@@ -3,7 +3,6 @@ namespace Lab1 {
         public Cube(double a) { side = a; }
         public Cube() : this(1) {}
         public Cube(Cube that) : this(that.side) {}
-
         public override string ToString() { return $"cube {{ side: {side} }}"; }
         public new double Area() { return 6 *side*side; }
         public new double Perimeter() { return 12 *side; }
